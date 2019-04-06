@@ -13,4 +13,7 @@
 
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'JansoController@index')->name('janso_list');
+Route::get('/create', 'JansoController@create')->name('janso_registration');
+Route::post('/create', 'JansoController@store')->name('janso_registration');
+
