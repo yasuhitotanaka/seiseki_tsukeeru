@@ -15,13 +15,17 @@
                     @endif
 
                     @foreach ($game_history as $item)
-                        <div>
-                        <a href="#">
-                            <p>1位: {{ $item->first_number }} 2位: {{ $item->second_number }} 
-                            3位: {{ $item->third_number }} 4位: {{ $item->fourth_number }} </p>
-                            <p>収支: {{ $item->income }}</p>
-                            <p>最終更新日: {{ $item->modified_at }}</p>
-                        </a>
+                        <div class='history_item'>
+                            <a href="/{{ $item->janso_id }}/{{ $item->id }}/modify_history">
+                            <ul>
+                                <li>1位: {{ $item->first_number }}</li>
+                                <li>2位: {{ $item->second_number }}</li>
+                                <li>3位: {{ $item->third_number }}</li>
+                                <li>4位: {{ $item->fourth_number }}</li>
+                                <li>収支: {{ $item->income }}</li>
+                                <li>最終更新日: {{ $item->modified_at }}</li>
+                            </ul>
+                            </a>
                         </div>
                     @endforeach
                 </div>

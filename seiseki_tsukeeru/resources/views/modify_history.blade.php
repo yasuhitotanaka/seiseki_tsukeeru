@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">雀荘の登録</div>
+                <div class="card-header">成績履歴の修正</div>
 
                 <div class="card-body">
                     @if (session('status'))

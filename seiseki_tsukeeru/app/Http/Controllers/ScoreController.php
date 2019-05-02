@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Janso;
 use App\Scores;
 use App\GameHistory;
 use Illuminate\Http\Request;
 use Kris\LaravelFormBuilder\FormBuilder;
 use App\Forms\ScoreRegisterForm;
+use App\Forms\ModifyHistoryForm;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
@@ -29,10 +31,9 @@ class ScoreController extends Controller
             return redirect()->route('score_registration', ['janso_id' => $janso_id]);
         }
 
+        $janso = Janso::find($janso_id);
         $score = $query->get();
-  
-  
-        return view('score_detail')->with('score', $score);
+        return view('score_detail', ['janso' => $janso, 'score' => $score]);
     }
 
     /**
@@ -138,7 +139,7 @@ class ScoreController extends Controller
                             $request->fourth_number,
                             $all_number,
                         );
-            $savings = $this->get_savings($first_number, $fourth_number);
+            $savings = $this->get_savings($request->first_number, $request->fourth_number);
             $average_savings = $this->get_average_savings($savings, $all_number);
 
             $total_score = Scores::create([
@@ -156,6 +157,7 @@ class ScoreController extends Controller
                 'created_at' => Carbon::now(),
                 'modified_at' => Carbon::now(),
             ]);
+            return redirect()->route('score_detail', ['janso_id' => $janso_id]);
         }
         
         $score_data = $query->toArray()[0];
@@ -203,7 +205,7 @@ class ScoreController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Scores  $scores
+     * @param  \App\Janso  $janso_id
      * @return \Illuminate\Http\Response
      */
     public function show($janso_id)
@@ -219,24 +221,48 @@ class ScoreController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Scores  $scores
+     * @param  \App\Janso  $janso_id
+     * @param  \App\History  $history_id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Scores $scores)
+    public function edit($janso_id, $history_id, formBuilder $formBuilder)
     {
-        //
+        $form = $formBuilder->create(ModifyHistoryForm::class, [
+            'method' => 'POST',
+            'url' => route('modify_history', ['janso_id' => $janso_id, 'history_id' => $history_id]),
+        ]);
+
+        return view('modify_history', compact('form'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Scores  $scores
+     * @param  \App\Janso  $janso_id
+     * @param  \App\History  $history_id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Scores $scores)
+    public function update(Request $request, $janso_id, $history_id, formBuilder $formBuilder)
     {
-        //
+        $form = $formBuilder->create(ModifyHistoryForm::class);
+
+        if (!$form->isValid()) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
+
+        $score_history = GameHistory::where('id', $history_id)
+                                    ->where('user_id', Auth::id())
+                                    ->where('janso_id', $janso_id)
+                                    ->update([
+                                    'first_number' => $request->first_number,
+                                    'second_number' => $request->second_number,
+                                    'third_number' => $request->third_number,
+                                    'fourth_number' => $request->fourth_number,
+                                    'income' => $request->income,
+                                    'modified_at' => Carbon::now(),
+                                ]);
+        return redirect()->route('game_history', ['janso_id' => $janso_id]);
     }
 
     /**

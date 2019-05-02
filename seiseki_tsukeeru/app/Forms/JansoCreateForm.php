@@ -12,7 +12,7 @@ class JansoCreateForm extends Form
     {
         $this
             ->add('name', Field::TEXT, [
-                'rules' => 'required|min:5'
+                'rules' => 'required|min:1'
             ])
             ->add('location', Field::TEXT)
             ->add('submit', Field:: BUTTON_SUBMIT, ['label' => '保存']);

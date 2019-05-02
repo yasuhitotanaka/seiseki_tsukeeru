@@ -14,6 +14,7 @@ class GameHistory extends Migration
     public function up()
     {
         Schema::create('game_history', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->integer('user_id');
             $table->integer('janso_id');
             $table->integer('first_number');

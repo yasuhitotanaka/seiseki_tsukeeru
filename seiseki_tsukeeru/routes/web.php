@@ -20,3 +20,5 @@ Route::get('/{janso_id}/score', 'ScoreController@index')->name('score_detail');
 Route::get('/{janso_id}/score_registration', 'ScoreController@create')->name('score_registration');
 Route::post('/{janso_id}/score_registration', 'ScoreController@store')->name('score_registration');
 Route::get('/{janso_id}/history', 'ScoreController@show')->name('game_history');
+Route::get('/{janso_id}/{history_id}/modify_history', 'ScoreController@edit')->name('modify_history');
+Route::post('/{janso_id}/{history_id}/modify_history', 'ScoreController@update')->name('modify_history');
