@@ -222,13 +222,22 @@ class ScoreController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Janso  $janso_id
-     * @param  \App\History  $history_id
+     * @param  \App\GameHistory  $history_id
      * @return \Illuminate\Http\Response
      */
     public function edit($janso_id, $history_id, formBuilder $formBuilder)
     {
+        $game_history = GameHistory::find($history_id); 
+        $model = [
+          'first_number' => $game_history->first_number,
+          'second_number' => $game_history->second_number,
+          'third_number' => $game_history->third_number,
+          'fourth_number' => $game_history->fourth_number,
+          'income' => $game_history->income            
+        ];
         $form = $formBuilder->create(ModifyHistoryForm::class, [
             'method' => 'POST',
+            'model' => $model,
             'url' => route('modify_history', ['janso_id' => $janso_id, 'history_id' => $history_id]),
         ]);
 

@@ -14,17 +14,17 @@
                         </div>
                     @endif
                     <h4>雀荘</h4>
-                    <ul>
+                    <ul class='janso-info'>
                         <li>雀荘名: {{ $janso->name }}</li>
                         <li>場所: {{ $janso->location }}</li>
                     </ul>
                     <h4>成績</h4>
-                    <ul>
+                    <ul class='score-info'>
                         <li>平均順位: {{ $score[0]['average_score'] }}</li>
                         <li>半荘数: {{ $score[0]['all_number'] }}</li>
                     </ul>
                     <p>
-                        <ul>
+                        <ul class='score-info'>
                             <li>1位:  {{ round($score[0]['total_first_number'] * 100 / $score[0]['all_number'], 1) }}</li>
                             <li>2位:  {{ round($score[0]['total_second_number'] * 100 / $score[0]['all_number'], 1) }}</li>
                             <li>3位:  {{ round($score[0]['total_third_number'] * 100 / $score[0]['all_number'], 1) }}</li>

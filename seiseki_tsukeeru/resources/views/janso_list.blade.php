@@ -18,6 +18,7 @@
                         <p><a href='/{{ $janso->id }}/score'>{{ $janso->name }}</a> </p>
                     @endforeach
                     
+                    <a href="/create"><button class='register-button'>新しく雀荘を登録する</button></a>
                 </div>
             </div>
         </div>
