@@ -18,7 +18,7 @@
                     <a href="/{{ $item->janso_id }}/{{ $item->id }}/modify_history">
                         <div class='history-item'>
                             <ul class='score-info'>
-                                <li>作成日: {{ $item->created_at }}</li>
+                                <li>作成日: {{ str_replace('-','/',substr($item->created_at,0,10)) }}</li>
                                 <li>1位の数: {{ $item->first_number }}</li>
                                 <li>2位の数: {{ $item->second_number }}</li>
                                 <li>3位の数: {{ $item->third_number }}</li>

@@ -10671,7 +10671,7 @@ a.text-dark:focus {
   display: inline-block;
   width: 90%;
   margin: 8px 24px;
-  padding: 24px 16px 8px 16px;
+  padding: 24px 16px 6px 16px;
   border: 1px solid #9e3b3b;
   border-radius: 16px;
   background: transparent;
@@ -10684,6 +10684,10 @@ a.text-dark:focus {
 .history-item:hover {
   background: #9e3b3b;
   color: #fff;
+}
+
+.history-item ul li {
+  padding-bottom: 2px;
 }
 
 .score-info,

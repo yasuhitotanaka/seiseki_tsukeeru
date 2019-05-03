@@ -25,13 +25,14 @@
                     </ul>
                     <p>
                         <ul class='score-info'>
-                            <li>1位:  {{ round($score[0]['total_first_number'] * 100 / $score[0]['all_number'], 1) }}</li>
-                            <li>2位:  {{ round($score[0]['total_second_number'] * 100 / $score[0]['all_number'], 1) }}</li>
-                            <li>3位:  {{ round($score[0]['total_third_number'] * 100 / $score[0]['all_number'], 1) }}</li>
-                            <li>4位:  {{ round($score[0]['total_fourth_number'] * 100 / $score[0]['all_number'], 1) }}</li>
+                            <li>1位率:  {{ round($score[0]['total_first_number'] * 100 / $score[0]['all_number'], 1) }}</li>
+                            <li>2位率:  {{ round($score[0]['total_second_number'] * 100 / $score[0]['all_number'], 1) }}</li>
+                            <li>3位率:  {{ round($score[0]['total_third_number'] * 100 / $score[0]['all_number'], 1) }}</li>
+                            <li>4位率:  {{ round($score[0]['total_fourth_number'] * 100 / $score[0]['all_number'], 1) }}</li>
                         </ul>
                     </p>
                     <p><a href='/{{ $janso->id }}/history'>履歴を見る</a></p>
+                    <a href='/{{ $janso->id }}/score_registration'><button class='register-button'>成績を追加する</button></a>
                 </div>
             </div>
         </div>
