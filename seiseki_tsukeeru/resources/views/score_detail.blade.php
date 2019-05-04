@@ -22,6 +22,9 @@
                     <ul class='score-info'>
                         <li>平均順位: {{ $score[0]['average_score'] }}</li>
                         <li>半荘数: {{ $score[0]['all_number'] }}</li>
+                        <li>総合収支: {{ $score[0]['total_income'] }} 円</li>
+                        <li>貯金（1位 - 4位の数）: {{ $score[0]['savings'] }}</li>
+                        <li>10試合あたりの貯金: {{ $score[0]['average_savings'] }}</li>
                     </ul>
                     <p>
                         <ul class='score-info'>

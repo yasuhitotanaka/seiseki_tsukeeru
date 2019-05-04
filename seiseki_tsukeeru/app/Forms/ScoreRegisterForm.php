@@ -28,7 +28,7 @@ class ScoreRegisterForm extends Form
                 'label' => '4位の数'
             ])
             ->add('income', Field::NUMBER , [
-                'rules' => 'required|min:1',
+                'rules' => 'required|numeric',
                 'label' => '収支    '
             ])
             ->add('submit', Field:: BUTTON_SUBMIT, ['label' => '保存']);

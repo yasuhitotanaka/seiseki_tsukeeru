@@ -13,7 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
+                    
                     @foreach ($game_history as $item)
                     <a href="/{{ $item->janso_id }}/{{ $item->id }}/modify_history">
                         <div class='history-item'>
